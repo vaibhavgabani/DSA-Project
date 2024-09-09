@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P01_Singly_Linked_List.c</title>
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f0f0f0;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: auto;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 90vw;
+            max-height: 80vh;
+            position: relative;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 20px; /* Border radius for the container */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: auto;
+        }
+
+        .header {
+            display: flex;
+            flex-wrap: wrap; /* Allows header content to wrap */
+            justify-content: space-between;
+            align-items: center;
+            background: black;
+            padding: 20px;
+            border-radius: 20px; /* Border radius for the header */
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .header-left {
+            flex: 1;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.8em;
+            margin: 0;
+            background: linear-gradient(to right, #00f260, #0575e6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            font-weight: bold; /* Bold title */
+        }
+
+        .header-right {
+            display: flex;
+            gap: 10px; /* Adds spacing between buttons */
+            flex-wrap: wrap; /* Allows buttons to wrap */
+            justify-content: center; /* Centers buttons */
+        }
+
+        .run-button, .copy-button {
+            border: none;
+            padding: 12px 24px;
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 12px; /* Border radius for buttons */
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease;
+            text-decoration: none;
+            color: white; /* White text color */
+            font-weight: bold; /* Bold text for buttons */
+        }
+
+        .run-button {
+            background: linear-gradient(to right, #ff512f, #f09819);
+        }
+
+        .run-button:hover {
+            background: linear-gradient(to right, #f09819, #ff512f);
+        }
+
+        .copy-button {
+            background: linear-gradient(to right, #00f260, #0575e6);
+        }
+
+        .copy-button:hover {
+            background: linear-gradient(to right, #0575e6, #00f260);
+        }
+
+        pre {
+            text-align: left;
+            background: #0d1117;
+            color: #c9d1d9;
+            padding: 20px;
+            border-radius: 20px; /* Border radius for the code block */
+            overflow-x: auto;
+            max-width: 100%;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: 0;
+            border: 1px solid #30363d;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: stretch; /* Ensures full width on mobile */
+            }
+
+            .header-left, .header-right {
+                width: 100%;
+                text-align: center; /* Center text on mobile */
+                margin-bottom: 10px;
+            }
+
+            .header-right {
+                gap: 10px; /* Spacing between buttons on mobile */
+            }
+
+            .run-button, .copy-button {
+                width: 100%; /* Full width buttons on mobile */
+                padding: 12px; /* Adjust padding for mobile */
+                font-size: 1em; /* Adjust font size for mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.2em; /* Smaller font size on very small screens */
+            }
+
+            .run-button, .copy-button {
+                font-size: 0.9em; /* Smaller font size on very small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <h1>P01_Singly_Linked_List.c</h1>
+            </div>
+            <div class="header-right">
+                <!-- Run Code Button as a link -->
+                <a href="https://www.programiz.com/c-programming/online-compiler/" target="_blank" class="run-button">Run Code</a>
+                <!-- Copy Code Button -->
+                <button id="copyCodeButton" class="copy-button">Copy Code</button>
+            </div>
+        </div>
+        <pre><code id="codeBlock" class="language-c">Loading code...</code></pre>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const copyButton = document.getElementById('copyCodeButton');
+            const codeBlock = document.getElementById('codeBlock');
+            const codeUrl = 'https://raw.githubusercontent.com/vaibhavgabani/DSA/main/Project/Code/SinglyLinkedList.c';
+
+            // Fetch code from GitHub raw URL and display it
+            fetch(codeUrl)
+                .then(response => response.text())
+                .then(code => {
+                    codeBlock.textContent = code;
+                    // Highlight the code
+                    hljs.highlightElement(codeBlock);
+                })
+                .catch(error => {
+                    codeBlock.textContent = 'Error fetching code.';
+                    console.error('Error fetching code:', error);
+                });
+
+            // Copy code to clipboard
+            copyButton.addEventListener('click', () => {
+                navigator.clipboard.writeText(codeBlock.textContent)
+                    .then(() => {
+                        alert('Code copied to clipboard!');
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy code:', err);
+                    });
+            });
+        });
+    </script>
+</body>
+</html>
